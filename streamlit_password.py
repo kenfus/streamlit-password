@@ -10,7 +10,12 @@ def is_authenticated(user, password):
 def linespace_generator(n_spaces=1):
     for i in range(n_spaces):
         st.write("")
-        
+class CheaterWarning(Exception):
+    """
+    Please check the file located at https://github.com/kenfus/streamlit-password/blob/master/streamlit_password.py
+    """
+    pass
+     
 # Implementation, should be used in the end of if __name__ == "__main__":
 
 if __name__ == "__main__":
@@ -43,7 +48,7 @@ if __name__ == "__main__":
             """,
             unsafe_allow_html=True,
         )
-            show_answer = st.sidebar.button("🔍 Show Answer 🔭"):
+            show_answer = st.sidebar.button("🔍 Show Answer 🔭")
             if show_answer:
                 raise CheaterWarning('I think the player is a cheater LOL')
 
