@@ -56,14 +56,14 @@ if __name__ == "__main__":
                 show_ballons = False
             show_answer = st.sidebar.button("DEBUG: LOGIN")
             if show_answer:
-                raise PasswordNotFound('Exception: Debug Password not found.\nCheck file located at https://github.com/kenfus/streamlit-password/blob/master/streamlit_password.py')
+                raise PasswordNotFound('EXCEPTION: Debug Password not found. Please add it to the File located at https://github.com/kenfus/streamlit-password/blob/master/streamlit_password.py')
 
     user = st.text_input("Enter a user name", "admin")
-    password = st.text_input("Enter a password", type="password")
+    password = st.text_input("Enter a password and confirm your login with the Enter-Key.", type="password")
     if is_authenticated(user, password):
         st.write("Access granted.")
         st.write('https://share.streamlit.io/kenfus/hangman-one/streamlit_hangman.py')
 
     else:
-        st.write("Please enter your password.")
+        st.write("Password is invalid.")
     linespace_generator(n_spaces=2)
