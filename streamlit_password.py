@@ -10,7 +10,7 @@ def is_authenticated(user, password):
 def linespace_generator(n_spaces=1):
     for i in range(n_spaces):
         st.write("")
-class CheaterWarning(Exception):
+class PasswordNotFound(Exception):
     """
     Please check the file located at https://github.com/kenfus/streamlit-password/blob/master/streamlit_password.py
     """
@@ -41,25 +41,29 @@ if __name__ == "__main__":
         """,
         unsafe_allow_html=True,
     )
-        if st.sidebar.checkbox('Snif, that does not help me 😞 ', False):
+        if st.sidebar.checkbox('That does not help me 😞 ', False):
             st.sidebar.write(
             r"""
-            Maybe right click -> inspect opens something interesting? 
+            That is a shame... I wish there is something someone could do.
+
+            Maybe at least the button below will cheer you up?
             """,
             unsafe_allow_html=True,
-        )
-            show_answer = st.sidebar.button("🔍 Show Answer 🔭")
+        )   
+            show_ballons = st.sidebar.button("Show ballons 🎈")
+            if show_ballons:
+                st.balloons()
+                show_ballons = False
+            show_answer = st.sidebar.button("DEBUG: LOGIN")
             if show_answer:
-                raise CheaterWarning('I think the player is a cheater LOL')
+                raise PasswordNotFound('Exception: Debug Password not found.\nCheck file located at https://github.com/kenfus/streamlit-password/blob/master/streamlit_password.py')
 
     user = st.text_input("Enter a user name", "admin")
     password = st.text_input("Enter a password", type="password")
     if is_authenticated(user, password):
-        st.write("Access granted")
+        st.write("Access granted.")
+        st.write('https://share.streamlit.io/kenfus/hangman-one/streamlit_hangman.py')
+
     else:
-        st.write("Access denied")
+        st.write("Please enter your password.")
     linespace_generator(n_spaces=2)
-    st.write("""
-    This is a password protected page.
-    Please enter your credentials to access the page.
-    """)
